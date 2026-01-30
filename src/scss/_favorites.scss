@@ -1,0 +1,295 @@
+/* ===========================
+   BOTÓN FLOTANTE DE FAVORITOS
+   =========================== */
+.favorites-btn {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ff4d4d, #ff1f1f);
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(255, 77, 77, 0.4);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(255, 77, 77, 0.6);
+  }
+
+  .heart-icon {
+    font-size: 1.2rem;
+  }
+
+  .badge {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+}
+
+/* ===========================
+   PANEL LATERAL - Desktop
+   =========================== */
+.favorites-panel {
+  display: none; /* Oculto por defecto */
+  background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  height: fit-content;
+  max-height: calc(100vh - 180px);
+  position: sticky;
+  top: 1rem;
+}
+
+/* Mostrar panel cuando está abierto */
+body.favorites-open .favorites-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header del panel */
+.favorites-panel-header {
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  flex-shrink: 0; /* No se comprime */
+
+  h2 {
+    font-size: 1.3rem;
+    margin: 0;
+  }
+}
+
+/* Botón de cerrar */
+.favorites-panel .close-btn {
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  &:hover {
+    color: #fff;
+    transform: scale(1.15);
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* ===========================
+   CONTENEDOR CON SCROLL
+   =========================== */
+.favorites-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+
+  /* Scrollbar personalizada */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 77, 77, 0.4);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 77, 77, 0.6);
+  }
+}
+
+/* ===========================
+   GRID DE FAVORITOS: 2 columnas
+   =========================== */
+.favorites-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+/* Tarjetas de favoritos con aspect ratio uniforme */
+.favorites-gallery .cat-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  max-height: 220px; /* 👈 Límite de altura para imágenes verticales */
+  border-radius: 12px;
+  overflow: hidden;
+  background: #111;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 77, 77, 0.3);
+  }
+}
+
+.favorites-gallery .cat-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.favorites-gallery .cat-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Botón de favorito dentro de la tarjeta */
+.favorites-gallery .cat-card button.favorite {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+
+  &:hover {
+    background: #ff4d4d;
+    transform: scale(1.15);
+  }
+
+  &.active {
+    background: #ff4d4d;
+  }
+}
+
+/* ===========================
+   EMPTY STATE
+   =========================== */
+.favorites-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  opacity: 0.6;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+/* TABLET (768px - 1024px) */
+@media (max-width: 1024px) {
+  .favorites-panel {
+    max-height: calc(100vh - 150px);
+  }
+
+  .favorites-gallery {
+    gap: 0.6rem;
+  }
+
+  .favorites-panel-header h2 {
+    font-size: 1.2rem;
+  }
+}
+
+/* MOBILE (hasta 768px) */
+@media (max-width: 768px) {
+  /* Panel como slide-in desde la derecha */
+  .favorites-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 85%;
+    max-width: 400px;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    z-index: 999;
+    transform: translateX(100%); /* Oculto fuera de pantalla */
+    transition: transform 0.3s ease;
+  }
+
+  /* Mostrar panel con animación */
+  body.favorites-open .favorites-panel {
+    transform: translateX(0); /* Slide in */
+  }
+
+  .favorites-btn {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+
+    .favorites-label {
+      display: none; /* Ocultar label en mobile */
+    }
+  }
+
+  .favorites-panel-header {
+    padding: 1rem 1.2rem;
+  }
+
+  .favorites-container {
+    padding: 0.8rem;
+  }
+
+  .favorites-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .favorites-gallery .cat-card {
+    aspect-ratio: 1 / 1; /* Cuadradas en mobile */
+    max-height: 180px; /* Altura ajustada para mobile */
+  }
+}
+
+/* SMALL MOBILE (hasta 480px) */
+@media (max-width: 480px) {
+  .favorites-panel {
+    width: 90%;
+  }
+
+  .favorites-gallery {
+    gap: 0.4rem;
+  }
+
+  .favorites-panel-header h2 {
+    font-size: 1.1rem;
+  }
+}

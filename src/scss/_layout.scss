@@ -1,0 +1,296 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BASE */
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: radial-gradient(circle at top, #1b1b1b, #0b0b0b);
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  padding: 2.5rem 1rem;
+
+  h1 {
+    font-size: 2.6rem;
+    letter-spacing: 0.5px;
+  }
+
+  p {
+    margin-top: 0.6rem;
+    opacity: 0.75;
+  }
+}
+
+/* CONTAINER - ESTADO NORMAL (sin favoritos) */
+.container {
+  max-width: 1600px;
+  margin: auto;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+/* ESTADO ABIERTO - Layout 70/30 lado a lado */
+body.favorites-open .container {
+  display: grid;
+  grid-template-columns: 1fr 400px; /* Galería flexible + Panel fijo 400px */
+  gap: 1.5rem;
+  align-items: start;
+  max-width: 100%;
+  padding: 1rem;
+}
+
+/* SECCIÓN GALERÍA */
+.gallery-section {
+  width: 100%;
+}
+
+/* Cuando favoritos está abierto, la galería se ajusta automáticamente */
+body.favorites-open .gallery-section {
+  width: 100%;
+}
+
+/* TITLES */
+h2 {
+  margin-bottom: 1.2rem;
+  font-size: 1.5rem;
+}
+
+/* BOTONES GENERALES */
+button.favorite {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: #fff;
+  padding: 0;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+
+  &:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.6));
+  }
+
+  &.active {
+    filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.9));
+  }
+}
+
+.gallery button.favorite {
+  font-size: 1.6rem;
+}
+
+/* FILTROS */
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  label {
+    font-weight: 600;
+  }
+
+  select {
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+  }
+}
+
+/* MODAL DE DETALLE */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  position: relative;
+  background: #111;
+  max-width: 520px;
+  max-height: 85vh; /* 👈 Limitar altura del modal */
+  margin: 6vh auto;
+  border-radius: 16px;
+  overflow-y: auto; /* 👈 Permitir scroll vertical */
+  animation: fadeIn 0.3s ease;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+
+  /* Scrollbar personalizada para el modal */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 122, 24, 0.5);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 122, 24, 0.8);
+  }
+}
+
+.modal-content img {
+  width: 100%;
+  max-height: 70vh; /* 👈 Limitar altura de imagen vertical */
+  object-fit: contain; /* 👈 Mantener proporción sin recortar */
+  display: block;
+}
+
+.modal-info {
+  padding: 1.2rem;
+
+  h2 {
+    margin-bottom: 0.6rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    opacity: 0.9;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.85);
+    transform: scale(1.1);
+  }
+}
+
+/* UTILIDADES */
+.hidden {
+  display: none !important;
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* SCROLL INFINITO */
+#scrollSentinel {
+  height: 1px;
+}
+
+/* =============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================= */
+
+/* TABLET (768px - 1024px) */
+@media (max-width: 1024px) {
+  body.favorites-open .container {
+    grid-template-columns: 1fr 350px; /* Panel más angosto en tablets */
+    gap: 1rem;
+  }
+}
+
+/* MOBILE & SMALL TABLET (hasta 768px) */
+@media (max-width: 768px) {
+  .header {
+    padding: 1.5rem 1rem;
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  /* En mobile, stack vertical */
+  body.favorites-open .container {
+    grid-template-columns: 1fr; /* Una sola columna */
+    gap: 0;
+  }
+
+  /* Panel de favoritos en mobile */
+  body.favorites-open .favorites-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 85%; /* Ocupa 85% del ancho */
+    max-width: 400px;
+    height: 100vh;
+    z-index: 999;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Galería en mobile cuando favoritos está abierto */
+  body.favorites-open .gallery-section {
+    filter: brightness(0.5); /* Oscurecer galería */
+    pointer-events: none; /* Deshabilitar clicks */
+  }
+}
+
+/* SMALL MOBILE (hasta 480px) */
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 1.6rem;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  body.favorites-open .favorites-panel {
+    width: 90%;
+  }
+}

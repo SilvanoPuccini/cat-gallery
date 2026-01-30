@@ -1,0 +1,11 @@
+{
+  "name": "js-ejercicios-catgallery",
+  "version": "1.0.0",
+  "description": "Proyecto final JavaScript - CatGallery con The Cat API",
+  "scripts": {
+    "build": "sass src/scss/main.scss dist/styles.css --watch"
+  },
+  "devDependencies": {
+    "sass": "^1.97.3"
+  }
+}

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>CatGallery | The Cat API</title>
+    <meta
+      name="description"
+      content="Galería de gatos usando The Cat API. Proyecto final JavaScript - Conquer Blocks."
+    />
+
+    <!-- FAVICONS -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./assets/favicon/favicon-16x16.png"
+    />
+    <link rel="icon" href="./assets/favicon/favicon.ico" />
+
+    <!-- MANIFEST / PWA -->
+    <link rel="manifest" href="./assets/manifest.json" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="background-color" content="#ffffff" />
+
+    <!-- STYLES -->
+    <link rel="stylesheet" href="./dist/styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>🐱 CatGallery</h1>
+      <p>Explorador de gatos usando The Cat API</p>
+    </header>
+
+    <!-- BOTÓN FLOTANTE DE FAVORITOS -->
+    <button id="favoritesBtn" class="favorites-btn">
+      <span class="heart-icon">❤️</span>
+      <span class="favorites-label">Mis favoritos</span>
+      <span id="favoritesCount" class="badge">0</span>
+    </button>
+
+    <main class="container">
+      <!-- SECCIÓN IZQUIERDA: GALERÍA (70%) -->
+      <section class="gallery-section">
+        <div class="filters">
+          <label for="breedSelect">Filtrar por raza:</label>
+          <select id="breedSelect">
+            <option value="">Todas las razas</option>
+          </select>
+        </div>
+
+        <h2>Galería</h2>
+
+        <!-- CONTENEDOR CON SCROLL PROPIO -->
+        <div class="gallery-wrapper">
+          <div id="gallery" class="gallery"></div>
+
+          <!-- SENTINEL PARA SCROLL INFINITO -->
+          <div id="scrollSentinel"></div>
+        </div>
+
+        <div id="loader" class="loader hidden">Cargando...</div>
+        <div id="error" class="error hidden"></div>
+      </section>
+
+      <!-- PANEL LATERAL DERECHO: FAVORITOS (30%) -->
+      <aside id="favoritesPanel" class="favorites-panel hidden">
+        <div class="favorites-panel-header">
+          <h2>Mis Favoritos</h2>
+          <button id="closeFavoritesPanel" class="close-btn">×</button>
+        </div>
+        <div id="favorites" class="favorites-container">
+          <div class="favorites-gallery"></div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- MODAL INFO GATO -->
+    <div id="catModal" class="modal hidden">
+      <div class="modal-overlay"></div>
+
+      <div class="modal-content">
+        <button id="closeModal" class="modal-close">×</button>
+
+        <img id="modalImage" src="" alt="Cat image" />
+
+        <div class="modal-info">
+          <h2 id="modalBreed">Raza desconocida</h2>
+          <p><strong>Origen:</strong> <span id="modalOrigin">-</span></p>
+          <p><strong>Temperamento:</strong></p>
+          <p id="modalTemperament">-</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="src/js/main.js" type="module"></script>
+  </body>
+</html>
