@@ -40,6 +40,7 @@ El objetivo es consolidar los conocimientos avanzados de JavaScript mediante el 
 
 El proyecto sigue una **arquitectura modular escalable**, separando responsabilidades en módulos ES6 independientes:
 
+```
 JS-EJERCICIOS-CATGALLERY/
 │
 ├── assets/
@@ -49,38 +50,37 @@ JS-EJERCICIOS-CATGALLERY/
 │   │   ├── favicon-16x16.png
 │   │   ├── favicon-32x32.png
 │   │   └── favicon.ico
-│   │
-│   └── manifest.json              # Manifiesto PWA
+│   └── manifest.json
 │
 ├── dist/
-│   ├── styles.css                 # CSS compilado final
-│   └── styles.css.map             # Source map
+│   ├── styles.css
+│   └── styles.css.map
 │
-├── node_modules/                  # Dependencias (SASS)
+├── node_modules/
 │
 ├── src/
 │   ├── js/
-│   │   ├── api.js                 # Llamadas a The Cat API
-│   │   ├── favorites.js           # Gestión de favoritos (localStorage)
-│   │   ├── filters.js             # Sistema de filtros por raza
-│   │   ├── gallery.js             # Renderizado de galería
-│   │   ├── main.js                # Inicialización y orquestación
-│   │   └── modal.js               # Modal de información detallada
+│   │   ├── api.js
+│   │   ├── favorites.js
+│   │   ├── filters.js
+│   │   ├── gallery.js
+│   │   ├── main.js
+│   │   └── modal.js
 │   │
 │   └── scss/
-│       ├── _components.scss       # Componentes UI (cards, botones)
-│       ├── _favorites.scss        # Estilos del panel de favoritos
-│       ├── _gallery.scss          # Estilos de la galería
-│       ├── _layout.scss           # Estructura principal y modal
-│       ├── _loader.scss           # Spinner de carga animado
-│       └── main.scss              # Archivo principal SCSS
+│       ├── _components.scss
+│       ├── _favorites.scss
+│       ├── _gallery.scss
+│       ├── _layout.scss
+│       ├── _loader.scss
+│       └── main.scss
 │
-├── .gitignore                     # Archivos ignorados por Git
-├── index.html                     # Página principal
-├── package-lock.json              # Lock de dependencias
-├── package.json                   # Dependencias y scripts npm
-└── README.md                      # Documentación del proyecto
-
+├── .gitignore
+├── index.html
+├── package-lock.json
+├── package.json
+└── README.md
+```
 ---
 
 ## 🧪 Funcionalidades implementadas
