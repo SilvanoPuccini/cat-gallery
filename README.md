@@ -12,9 +12,9 @@ Máster en Desarrollo Web Full Stack – Conquer Blocks
 **JavaScript – APIs REST, Persistencia y Arquitectura Modular**
 
 ---
+### 🌐 Demo en Vivo
 
-## 🌐 Demo en vivo (GitHub Pages)
-🔗 **URL pública del proyecto:** [https://silvanopuccini.github.io/cat-gallery/](https://silvanopuccini.github.io/cat-gallery/)
+🔗 **[Ver Proyecto](https://silvanopuccini.github.io/cat-gallery/)**
 
 ---
 
